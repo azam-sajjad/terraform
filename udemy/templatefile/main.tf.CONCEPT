@@ -1,0 +1,23 @@
+# DEPRECATED
+resource "template_file" "policy" {
+    template = "${file("${path.module}/policy.tpl")}"
+    vars = {
+        name = "Azam Sajjad"
+    }
+}
+
+# USE LIKE THIS
+locals {
+    policy = templatefile("${path.module}/policy.tpl", {
+        name = "Azam Sajjad"
+    })
+}
+
+# OR LIKE THIS
+data "null_data_source" "policy" {
+    inputs = {
+        policy = templatefile("${path.module}/policy.tpl", {
+            name = "Azam Sajjad"
+        })
+    }
+}

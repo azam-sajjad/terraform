@@ -1,13 +1,13 @@
 variable "vpc_id"{}
 variable "jenkins_ec2_sg_name"{}
-variable "jenkins_ec2_sg_name_testing"{}
+variable "jenkins_ec2_sg_name_portal"{}
 
 
-output "jenkins_sec_group_id" {
+output "jenkins_security_group_id" {
     value = aws_security_group.jenkins_allow.id
 }
-output "jenkins_testing_security_group_id" {
-    value = aws_security_group.jenkins_allow_testing.id
+output "jenkins_security_group_id_portal" {
+    value = aws_security_group.jenkins_allow_portal.id
 }
 
 locals {
@@ -36,7 +36,6 @@ resource "aws_security_group" "jenkins_allow" {
         Name = "sg_to_allow_traffic_for_jenkins_ec2"
     }
     egress {
-        description = "All outbound traffic for jenkin's ec2 server"
         from_port = 0
         to_port = 0
         protocol = "-1"
@@ -56,8 +55,8 @@ resource "aws_security_group" "jenkins_allow" {
     
 }
 
-resource "aws_security_group" "jenkins_allow_testing" {
-    name = var.jenkins_ec2_sg_name_testing
+resource "aws_security_group" "jenkins_allow_portal" {
+    name = var.jenkins_ec2_sg_name_portal
     description = "allow port 8080 for testing"
     vpc_id = var.vpc_id
     tags = {

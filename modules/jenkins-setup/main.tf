@@ -6,9 +6,12 @@ module "networking" {
     us_availability_zone = var.us_az
 }
 
-# module "security_group" {
-
-# }
+module "security_group" {
+    source = "./security_group"
+    vpc_id = module.networking.vpc_id
+    jenkins_ec2_sg_name = "jenkins_allow"
+    jenkins_ec2_sg_name_testing = "jenkins_allow_for_testing"
+}
 
 # module "jenkins_ec2" {
 

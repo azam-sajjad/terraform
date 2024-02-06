@@ -1,5 +1,3 @@
-variable "AWS_ACCESS_KEY" {}
-variable "AWS_SECRET_KEY" {}
 variable "list1" {
     type = list(string)
     default = [1, 10, 9, 101, 3]
@@ -18,6 +16,8 @@ variable "map1" {
     }
 }
 
+variable "AWS_ACCESS_KEY" {}
+variable "AWS_SECRET_KEY" {}
 variable "AWS_REGION" {
     type = string
     default = "eu-west-1"
